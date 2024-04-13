@@ -9,6 +9,8 @@ interface AppContextType {
   setUserChats:React.Dispatch<React.SetStateAction<Chat[]|null>>;
   userMessages: Message[]|null;
   setUserMessages:React.Dispatch<React.SetStateAction<Message[]|null>>;
+  showChat: boolean;
+  setShowChat: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Props {
@@ -21,9 +23,9 @@ const AppProvider: React.FC<Props> = ({children}:{children:React.ReactNode} ) =>
   const [user, setUser] = useState<User | null>(null);
   const [userChats, setUserChats] = useState<Chat[] | null>(null);
   const [userMessages, setUserMessages] = useState<Message[] | null>(null);
-
+  const [showChat, setShowChat] = useState(false);
   return (
-    <AppContext.Provider value={{ user, setUser,userChats,setUserChats,userMessages,setUserMessages }}>
+    <AppContext.Provider value={{ user, setUser,userChats,setUserChats,userMessages,setUserMessages,showChat,setShowChat }}>
       {children}
     </AppContext.Provider>
   );

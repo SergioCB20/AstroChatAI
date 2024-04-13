@@ -26,6 +26,7 @@ export type Message = {
 export type Chat = {
     id: number;
     name?:string;//para los grupos
+    photo?:string;
     members: User[];
     messages: Message[];
 }

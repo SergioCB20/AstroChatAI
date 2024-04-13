@@ -92,7 +92,7 @@ const myAnswer:Message ={
 export const Chats: Chat[] = usuariosRandom.map((usuario, index) => ({
   id: index + 1,
   members: [usuario, myAccount],
-  messages: [mensajesRandom[index],myAnswer],
+  messages: [mensajesRandom[index]],
 }));
 
 

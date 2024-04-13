@@ -1,20 +1,23 @@
 import React from 'react';
 import AstroIcon from "../../assets/AstroIcon.png";
 import ChatPreview from "./ChatPreview";
-import { Message, Chat } from "../../types/types";
+import { Chat } from "../../types/types";
 import { useAppContext } from '../../context/AppContext';
-import { buscarChat } from '../../helpers/buscadores';
 
-export const ChatList = ({messages, setCurrentChat}:{messages:Message[]|null,setCurrentChat:React.Dispatch<React.SetStateAction<Chat|null>>}) => {
-  
-    const {userChats} = useAppContext();
+export const ChatList = ({chats, setCurrentChat}:{chats:Chat[]|null,setCurrentChat:React.Dispatch<React.SetStateAction<Chat|null>>}) => {
 
-  const handleCurrentChat = (mensaje:Message) => {
-    let chat;
-    if(userChats != null)
-    chat = buscarChat(mensaje.target,userChats);
-    if(chat != null)
+  const {user,setShowChat} = useAppContext();
+
+  const handleClick = (chat:Chat) => {
     setCurrentChat(chat);
+    /*vistear el ultimo mensaje ajeno*/
+    for(let i=chat.messages.length-1;i>=0;i--){
+      if(chat.messages[i].user.id !== user?.id){
+        chat.messages[i].isRead = true;
+        break;
+      }
+    }
+    setShowChat(true);
   }
 
     return (
@@ -23,14 +26,14 @@ export const ChatList = ({messages, setCurrentChat}:{messages:Message[]|null,set
         <img
           src={AstroIcon}
           alt="logo de AstroChatAI"
-          className="lg:h-full h-[50px]"
+          className="lg:h-full h-[50px] ms-[-25px] lg:m-0"
         />
-        <h1 className="just self-center font-bold lg:text-4xl ">Chats</h1>
+        <h1 className="self-center font-bold lg:text-4xl ">Chats</h1>
       </div>
-      <div className="max-h-[570px] overflow-y-scroll modern-scrollbar md:overflow-y-auto">
-        { messages && messages.map((msg) => (
-          <div onClick={()=>handleCurrentChat(msg)} className='cursor-pointer' key={msg.id}>
-            <ChatPreview message={msg}/>
+      <div className="max-h-[530px] overflow-y-scroll modern-scrollbar md:overflow-y-auto">
+        { chats && chats.map((chat) => (
+          <div onClick={()=>handleClick(chat)} className='cursor-pointer' key={chat.id}>
+            <ChatPreview chat={chat}/>
           </div>
         ))}
       </div>
