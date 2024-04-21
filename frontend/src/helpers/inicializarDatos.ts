@@ -77,7 +77,7 @@ export const mensajesRandom: Message[] = usuariosRandom.map((usuario) => ({
   target: usuariosRandom.indexOf(usuario) + 1
 }));
 
-const myAnswer:Message ={
+/*const myAnswer:Message ={
   id: "message-10",
   text: "Hola soy Sergio, un gusto saber que te uniste a mi plataforma, bienvenido!",
   user: myAccount,
@@ -87,7 +87,7 @@ const myAnswer:Message ={
   deletedAt: null,
   isDeleted: false,
   target: usuariosRandom.indexOf(myAccount) + 1
-}
+}*/
 
 export const Chats: Chat[] = usuariosRandom.map((usuario, index) => ({
   id: index + 1,

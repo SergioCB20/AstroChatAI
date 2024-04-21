@@ -1,10 +1,8 @@
 import { Chat } from '../../types/types'
-import { useAppContext } from '../../context/AppContext';
 import GroupChat from './GroupChat';
 import PersonalChat from './PersonalChat';
 
 export const ChatWindow = ({currentChat}:{currentChat:Chat|null})=>{
-    const {user} = useAppContext();
     return (
         <div className="w-full h-full">
             {currentChat === null?(
