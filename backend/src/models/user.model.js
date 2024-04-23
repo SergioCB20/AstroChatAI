@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
     },
     isOnline:{
         type:Boolean,
-        required:true,
         default:false
     },
     chats:{
